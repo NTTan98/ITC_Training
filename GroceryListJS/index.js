@@ -3,11 +3,6 @@ let input = document.getElementById("input");
 let msg = document.getElementById("msg");
 let list = document.getElementById("list");
 let listItems = [];
-//save list to local storage
-let saveList = () => {
-  localStorage.setItem("list", JSON.stringify(listItems));
-};
-
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log("button clicked");
