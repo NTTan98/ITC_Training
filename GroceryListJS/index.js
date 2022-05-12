@@ -3,20 +3,19 @@ let input = document.getElementById("input");
 let msg = document.getElementById("msg");
 let list = document.getElementById("list");
 let listItems = [];
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log("button clicked");
   formValidation();
   renderList();
-  saveList();
 });
 let formValidation = () => {
   if (input.value === "") {
-    msg.innerHTML = "Post cannot be blank";
+    msg.innerHTML = "Input cannot be blank";
   } else {
     msg.innerHTML = "";
     listItems.push(input.value);
-    console.log(listItems);
   }
   input.value = "";
 };
@@ -42,7 +41,6 @@ list.addEventListener("click", (e) => {
     listItems.splice(index, 1);
     console.log(index);
     renderList();
-    saveList();
   }
 });
 //edit list item
@@ -52,6 +50,5 @@ list.addEventListener("click", (e) => {
     input.value = listItems[index];
     listItems.splice(index, 1);
     renderList();
-    saveList();
   }
 });
