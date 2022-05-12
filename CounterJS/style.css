@@ -24,6 +24,9 @@
 .container .counter > span {
   margin: 0 20px;
 }
+.container .counter > button {
+  width: 50px;
+}
 .container .btn {
   padding: 15px;
   border: none;
