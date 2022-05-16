@@ -1,0 +1,29 @@
+<div class="container__cal">
+  <!-- Calculator -->
+  <h1>Calculator</h1>
+  <div class="display">
+    <span class="displayValue">{{
+      displayValue.length == 0 ? "0" : displayValue
+    }}</span>
+    <span class="result">{{ result.length == 0 ? "(0)" : result }}</span>
+  </div>
+  <button class="AC__Btn" (click)="getValue('AC')">AC</button>
+  <div class="buttons">
+    <button (click)="getValue('7')">7</button>
+    <button (click)="getValue('8')">8</button>
+    <button (click)="getValue('9')">9</button>
+    <button (click)="getValue('+')">+</button>
+    <button (click)="getValue('4')">4</button>
+    <button (click)="getValue('5')">5</button>
+    <button (click)="getValue('6')">6</button>
+    <button (click)="getValue('-')">-</button>
+    <button (click)="getValue('1')">1</button>
+    <button (click)="getValue('2')">2</button>
+    <button (click)="getValue('3')">3</button>
+    <button (click)="getValue('*')">*</button>
+    <button (click)="getValue('0')">0</button>
+    <button (click)="getValue('.')">.</button>
+    <button (click)="getValue('=')">=</button>
+    <button (click)="getValue('/')">/</button>
+  </div>
+</div>

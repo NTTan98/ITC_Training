@@ -1,0 +1,11 @@
+<div class="form">
+  <input
+    type="text"
+    [(ngModel)]="newTask"
+    class="input"
+    placeholder="Add todo"
+    (keyup.enter)="addToList()"
+  />
+  <button (click)="addToList()" class="btn">Add Task</button>
+</div>
+<app-todolist [items]="items"></app-todolist>

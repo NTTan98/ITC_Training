@@ -1,0 +1,9 @@
+h1 {
+  text-transform: uppercase;
+  text-align: center;
+  margin: 20px 0;
+}
+img {
+  width: 100%;
+  background-size: cover;
+}

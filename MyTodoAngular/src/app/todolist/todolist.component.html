@@ -1,0 +1,13 @@
+<div class="list-todo">
+  <div
+    *ngFor="let x of items; let index = index"
+    class="items"
+    (click)="completeTask(index)"
+  >
+    <div class="item">{{ x }}</div>
+    <div class="btn-group">
+      <button (click)="deleteTask(index)" class="btn-del">Remove</button>
+      <button class="btn-edit" (click)="editTask(index)">Edit</button>
+    </div>
+  </div>
+</div>
