@@ -1,31 +1,35 @@
-import { Component, OnInit, Input } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TodoQuery } from '../state/todo.query';
+import { TodoService } from '../state/todo.service';
+import { Todo } from '../state/todo.model';
 @Component({
   selector: 'app-todolist',
   templateUrl: './todolist.component.html',
   styleUrls: ['./todolist.component.css'],
 })
 export class TodolistComponent implements OnInit {
-  @Input() items: Array<string> = [];
-  console = console;
-  public deleteTask(index: number) {
-    let confirmResult = confirm(
-      `Are you sure you want to delete: ${this.items[index]}?`
-    );
-    if (confirmResult) {
-      this.items.splice(index, 1);
-    }
-  }
-  public editTask(index: number) {
-    let result = prompt('Edit task', this.items[index]);
-    if (result != null) {
-      this.items[index] = result;
-    }
-  }
-  public completeTask(index: number) {
-    this.console.log(index);
-  }
-  constructor() {}
+  todos$: Observable<Todo[]>;
+  public titleEdit!: string | null;
 
+  constructor(private todoQuery: TodoQuery, private todo: TodoService) {
+    this.todos$ = this.todoQuery.selectAll();
+  }
+  removeTodo(id: string) {
+    let confirmResult = confirm(`Are you sure you want to delete?`);
+    if (confirmResult) {
+      this.todo.removeTodo(id);
+    }
+  }
+  editTodo(id: string) {
+    this.titleEdit = prompt('Edit your todo');
+    if (
+      this.titleEdit !== null &&
+      this.titleEdit !== '' &&
+      this.titleEdit.trim() !== ''
+    ) {
+      this.todo.editTodo(id, this.titleEdit);
+    }
+  }
   ngOnInit(): void {}
 }
