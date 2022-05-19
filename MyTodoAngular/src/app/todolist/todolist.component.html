@@ -2,8 +2,12 @@
   <div *ngFor="let todo of todos$ | async; let index = index" class="items">
     <div class="item">{{ todo.title }}</div>
     <div class="btn-group">
-      <button (click)="removeTodo(todo.id)" class="btn-del">Remove</button>
-      <button class="btn-edit" (click)="editTodo(todo.id)">Edit</button>
+      <button (click)="removeTodo(todo.id, todo.title)" class="btn-del">
+        Remove
+      </button>
+      <button class="btn-edit" (click)="editTodo(todo.id, todo.title)">
+        Edit
+      </button>
     </div>
   </div>
 </div>

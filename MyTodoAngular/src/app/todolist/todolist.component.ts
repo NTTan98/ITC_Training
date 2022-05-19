@@ -15,14 +15,14 @@ export class TodolistComponent implements OnInit {
   constructor(private todoQuery: TodoQuery, private todo: TodoService) {
     this.todos$ = this.todoQuery.selectAll();
   }
-  removeTodo(id: string) {
-    let confirmResult = confirm(`Are you sure you want to delete?`);
+  removeTodo(id: string, title: string) {
+    let confirmResult = confirm(`Are you sure you want to delete: ${title}? `);
     if (confirmResult) {
       this.todo.removeTodo(id);
     }
   }
-  editTodo(id: string) {
-    this.titleEdit = prompt('Edit your todo');
+  editTodo(id: string, title: string) {
+    this.titleEdit = prompt('Edit your todo', title);
     if (
       this.titleEdit !== null &&
       this.titleEdit !== '' &&

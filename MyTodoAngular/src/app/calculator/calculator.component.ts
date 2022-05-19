@@ -8,37 +8,44 @@ import { Component, OnInit } from '@angular/core';
 export class CalculatorComponent implements OnInit {
   public displayValue: string = '';
   public result: string = '';
-  public getValue(value: string) {
-    if (value === '=') {
-      this.result = eval(this.displayValue.toString());
-      this.displayValue = '';
-    } else if (
-      value !== '+' &&
-      value !== '-' &&
-      value !== '*' &&
-      value !== '/'
+  public getNum(num: string) {
+    if (this.displayValue == '' && num == '.') {
+      this.displayValue = '0.';
+      return;
+    }
+    if (num == '0' && this.displayValue == '') {
+      return;
+    }
+    this.displayValue += num;
+  }
+  public getOperator(operator: string) {
+    if (
+      this.displayValue.slice(-1) == '+' ||
+      this.displayValue.slice(-1) == '-' ||
+      this.displayValue.slice(-1) == '*' ||
+      this.displayValue.slice(-1) == '/'
     ) {
-      this.displayValue = this.displayValue + value;
+      this.displayValue = this.displayValue.slice(0, -1) + operator;
+      return;
+    }
+    console.log(this.displayValue.slice(-1));
+    if (this.displayValue == '') {
+      return;
     } else {
-      if (this.displayValue.length > 0) {
-        const lastChar = this.result.substr(this.displayValue.length - 1);
-        if (
-          lastChar === '+' ||
-          lastChar === '-' ||
-          lastChar === '*' ||
-          lastChar === '/'
-        ) {
-          this.displayValue = this.displayValue.substr(
-            0,
-            this.displayValue.length - 1
-          );
-        }
-      }
-      this.displayValue = this.displayValue + value;
+      this.displayValue += operator;
     }
-    if (value === 'AC') {
-      this.displayValue = '';
+    //replace the last operator with the new operator
+  }
+  public getResult(result: string) {
+    if (this.displayValue == '') {
+      return;
     }
+    this.result = eval(this.displayValue);
+    this.displayValue = '';
+  }
+  public clear() {
+    this.displayValue = '';
+    this.result = '';
   }
 
   constructor() {}
